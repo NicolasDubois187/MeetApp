@@ -1,66 +1,74 @@
-// www.themealdb.com/api/json/v1/1/search.php?s=tomato
+const buttons = document.querySelectorAll("button");
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+let meetData = [];
 
-// Tester si le lien renvoie des données dans le navigateur
-
-// Créer une fonction pour "fetcher" les données, passer ces données dans une variable. 
-
-// Affiche les données (12max) via une fonction (map) :
-// Recette, origine, image.
-
-let recetteData = [];
-
-async function fetchRecette() {
-    await fetch(
-        "https://www.themealdb.com/api/json/v1/1/search.php?s=" + searchInput.value
-        )
-        .then((res) => res.json())
-        .then((data) => (recetteData = data.meals));
-
-    console.log(recetteData);   
-    recetteDisplay();
+async function fetchMeet() {
+    await fetch("https://randomuser.me/api/?results=48")
+    .then((res) => res.json())
+    .then((data) => (meetData = data.results));
+    
+    console.log(meetData);   
+    meetDisplay();
 }
-function recetteDisplay() {
-    if (recetteData === null) {
-        mealContainer.innerHTML = "<h2>Aucun résultat</h2>";
-        return;
-    }
-    if (searchInput.value === "") {
-        mealContainer.innerHTML = "<h3>Veuillez faire une recherche</h3>";
-        return;
+function dateFormater(date) {
+    return new Date(date).toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+}
 
-    }
-    mealContainer.innerHTML = recetteData
-    .slice(0, 12)
-    .map((meal) => {
-        let ingredients = [];
-
-        for (i = 1; i < 21; i++) {
-            if (meal[`strIngredient${i}`]) {
-                ingredients.push(
-                    `<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`
-                );
-            }
+function meetDisplay(sort) {
+    
+    meetContainer.innerHTML = meetData
+    // .filter((country) => country.population > 60000000)
+    // .sort((a, b) => b.population - a.population)
+    // .slice(0, 10)
+    .filter((member) => {
+        if (male.checked && female.checked) {
+            return member;
+        } else if (male.checked) {
+            return member.gender === "male";
+        } else if (female.checked) {
+            return member.gender === "female";
         }
+    })
+    .sort((a, b) => {
+        if (sort === "croissant") {
+            return a.dob.age - b.dob.age;
+        } else if (sort === "décroissant") {
+            return b.dob.age - a.dob.age;
+        }
+    })
+    .map(
+        (member) =>
+        `
+        <div class="card" style="background: ${member.gender === "male" ? "rgb(64, 192, 224)" : "pink"}">
+        <img src=${member.picture.large} alt="photo ${member.picture.large}"></img>
+        <h2>${member.name.first} ${member.name.last}</h2>
+        <p>${member.location.city},  ${dateFormater(member.dob.date)}</p>
+        <em>Membre depuis : ${Math.ceil(
+            (new Date() - new Date(member.registered.date)) / (1000 * 3600 * 24)
+        )} jours</em>
 
-        return `    
-        <div class="card">
-        <h2>${meal.strMeal}</h2>
-        <h4>${meal.strArea}</h4>
-        <img src=${meal.strMealThumb} alt="photo ${meal.strMeal}"></img>
-        <ul>${ingredients.join("")}</ul>
-        <iframe width="759" height="427" src=${meal.strYoutube.replace(
-            "watch?v=",
-            "embed/"
-        )} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        `;
-    })    
+        `
+    )
     .join("");
+        
 }
-// searchInput.addEventListener("input",  fetchRecette);
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    fetchRecette();
+    
+window.addEventListener("load", fetchMeet);
+
+buttons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        meetDisplay(e.target.id);
+
+    });
 });
 
-// window.addEventListener("load", fetchRecette);
+checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("input", meetDisplay);
+})
+
+

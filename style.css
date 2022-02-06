@@ -7,77 +7,60 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
-    min-height: 100vh;
     background: whitesmoke;
 }
-form {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    background: whitesmoke;
-    padding: 6px 20px;
-    border-radius: 0 0 6px 6px;
-    box-shadow: 0 1px 10px black;
-    z-index: 1000;
+.title {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
-input {
-    border: 1px solid rgb(129, 186, 233);
-    background: rgb(93, 213, 243);
-    color: rgb(38, 65, 62);
-    outline: none;
+.title img {
+    max-width: 30px;
+    margin: auto 10px;
+}
+button {
+    padding: 5px 15px;
+    border: none;
     border-radius: 5px;
-    height: 30px;
-    margin: 10px 0 5px;
-    width: 270px;
-    font-size: 1.2rem;
-    transition: 0.2s;
-
+    background-color: rgb(255, 138, 71);
+    cursor: pointer;
+    
 }
-input:focus {
-    border: 1px solid turquoise;
+label {
+    user-select: none;
 }
-#mealContainer {
+#meetContainer {
 
     padding-top: 110px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background:whitesmoke;
 }
-#mealContainer > div {
+#meetContainer > div {
     flex: 1 0 20%;
-    min-width: 280px;
-    max-width: 450px;
-    background: white;
+    min-width: 150px;
+    max-width: 450px; 
     margin: 10px;
-    border-radius: 5px;
-    padding: 10px 20px 200px;
-    box-shadow: 0 1px 10px black;
-    position: relative;
-}
-h2 {
-    margin: 6px auto;
-    color: rgb(49, 189, 175);
-}
-h4 {
-    color: rgb(15, 61, 57); 
+    background-color: rgb(64, 192, 224);
+    border-radius: 8px;
+    padding: 20px 20px 20px;
+    box-shadow: 0 1px 10px rgba(53, 52, 52, 0.411);
+    
 }
 img {
-    width: 100%;
+    
     object-fit: cover;
-    border-radius: 15px;
-    margin: 10px 0;
-    box-shadow: 0 1px 10px black;
+    border-radius: 150px;
+    margin: 10px auto 0;
+    box-shadow: 0 1px 10px rgb(100, 98, 98);
 }
-li {
-    text-align: left;
+h2 {
+    letter-spacing: 1px;
 }
-iframe {
-    width: 70%;
-    height: 150px;
-    margin: 10px 0;
-    border-radius: 10px;
-    position: absolute;
-    bottom: 26px;
-    left: 50%;
-    transform: translateX(-50%);
+p {
+    margin: 10px auto;
 }
+

@@ -7,8 +7,16 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
-    background: whitesmoke;
+    background: white;
 }
+nav {
+    display: flex;
+    position: fixed;
+    left: 20px;
+    width: 300px;
+    justify-content: space-around;
+}
+
 .title {
     margin: 20px auto;
     display: flex;

@@ -24,10 +24,7 @@ nav {
     text-align: center;
     justify-content: center;
 }
-.title img {
-    max-width: 30px;
-    margin: auto 10px;
-}
+
 button {
     padding: 5px 15px;
     border: none;

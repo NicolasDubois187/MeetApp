@@ -1,22 +1,3 @@
-// https://randomuser.me/api/?results=48
-
-// 1 - tester le lien
-
-// 2 - "fetcher" les données et les donner à une variable
-
-// 3 - Créer une fonction d'affichage qui va "maper" la variable qui renferme les données : photos, prénom+nom, ville+date de naissance, membre depuis.
-
-// 4 - Faire le css, rendre la taille responsive.
-
-// BONUS
-// 1 - Convertir la date de naissance au bon format
-
-// 2 - Calculer depuis combien de temps l'utilisateur est membre
-
-// 3 - Créer 2 boutons pour trier par age les utilisateurs (sort())
-
-// 4 - Créer 2 checkbox pour filtrer par genre (filter())
-
 const buttons = document.querySelectorAll("button");
 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 let meetData = [];
